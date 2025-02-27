@@ -2,6 +2,8 @@ from django.db import models
 from django.contrib.auth.admin import User
 from django.utils import timezone
 from django.urls import reverse
+import markdown
+from django.utils.html import strip_tags
 # Create your models here.
 
 class Category(models.Model):
@@ -29,6 +31,11 @@ class Post(models.Model):
     author = models.ForeignKey(User, verbose_name='作者',on_delete=models.CASCADE)
     def save(self, *args, **kwargs):
         self.modified_time = timezone.now()
+        md = markdown.Markdown(extensions=[
+            'markdown.extensions.extra',
+            'markdown.extensions.codehilite',
+        ])
+        self.excerpt = strip_tags(md.convert(self.body))[:54]
         super().save(*args, **kwargs)
     class Meta():
         verbose_name = '文章'

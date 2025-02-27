@@ -78,10 +78,12 @@
 {% endblock main %}
 
 {% block toc %}
-    <div class="widget widget-content">
-        <h3 class="widget-title">文章目录</h3>
-        <ul>
-        {{ post.toc|safe }}
-        </ul>
+    {% if post.toc %}
+        <div class="widget widget-content">
+            <h3 class="widget-title">文章目录</h3>
+            <ul>
+            {{ post.toc|safe }}
+            </ul>
+    {% endif %}
     </div>
 {% endblock toc %}

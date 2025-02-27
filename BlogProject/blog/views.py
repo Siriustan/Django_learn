@@ -4,6 +4,8 @@ from django.shortcuts import render,get_object_or_404
 from django.http import HttpResponse
 from .models import Post
 import markdown
+from markdown.extensions.toc import TocExtension
+from django.utils.text import slugify
 import re
 
 def index(request):
