@@ -1,6 +1,7 @@
 from django.db import models
 from django.contrib.auth.admin import User
 from django.utils import timezone
+from django.urls import reverse
 # Create your models here.
 
 class Category(models.Model):
